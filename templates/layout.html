@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> {% block title %}{% endblock %}</title>
+	
+	 <base href="../" > 
+
+<!-- 
+    Angular CDNs to be replaced later
+-->
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js" integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular-csp.css" integrity="sha512-f7WVHp6iaZ7iOx9duYm67KLwCFJ9KirfMIK0MAOxf1wq5M8Ogdw5ljbCxlk/BtWIbyXWMsIaDaqwUpXttPQ/5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+
+
+
+  <!-- Favicons -->
+  <link href="{{url_for('static',assets/img/favicon.png)}}" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{url_for('static',assets/vendor/bootstrap/css/bootstrap.min.css)}}" rel="stylesheet">
+  <link href="{{url_for('static',assets/vendor/bootstrap-icons/bootstrap-icons.css)}}" rel="stylesheet">
+  <link href="{{url_for('static',assets/vendor/boxicons/css/boxicons.min.css)}}" rel="stylesheet">
+  <link href="{{url_for('static',assets/vendor/quill/quill.snow.css)}}" rel="stylesheet">
+  <link href="{{url_for('static',assets/vendor/quill/quill.bubble.css)}}" rel="stylesheet">
+  <link href="{{url_for('static',assets/vendor/remixicon/remixicon.css)}}" rel="stylesheet">
+  <link href="{{url_for('static',assets/vendor/simple-datatables/style.css)}}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{{url_for('static',assets/css/style.css)}}" rel="stylesheet">
+
+
+  <!-- Vendor JS Files -->
+  <script src="{{url_for('static',assets/vendor/apexcharts/apexcharts.min.js)}}"></script>
+  <script src="{{url_for('static',assets/vendor/bootstrap/js/bootstrap.bundle.min.js)}}"></script>
+  <script src="{{url_for('static',assets/vendor/chart.js/chart.umd.js)}}"></script>
+  <script src="{{url_for('static',assets/vendor/echarts/echarts.min.js)}}"></script>
+  <script src="{{url_for('static',assets/vendor/quill/quill.js)}}"></script>
+  <script src="{{url_for('static',assets/vendor/simple-datatables/simple-datatables.js)}}"></script>
+  <script src="{{url_for('static',assets/vendor/tinymce/tinymce.min.js)}}"></script>
+  <script src="{{url_for('static',assets/vendor/php-email-form/validate.js)}}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{url_for('static', assets/js/main.js)}}"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="g-sidenav-show  bg-gray-200">
+    
+    
+    {% block sidebarcontent %}{% endblock %}
+    {% block navbarcontent %}{% endblock %}
+    {% block bodycontent %}{% endblock %}
+    {% block modalcontent %}{% endblock %}
+    {% block footerconent %}{% endblock %}
+</body>
+</html>
