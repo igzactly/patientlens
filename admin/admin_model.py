@@ -2,7 +2,7 @@ import pymysql
 import hashlib
 from flask import json
 
-db = pymysql.connect(host="localhost",user="root",password="Napster@9930",database="patientlens")
+db = pymysql.connect(host="localhost",user="root",password="",database="patientlens")
 db.autocommit(True)
 cur = db.cursor()
 def get(id):
