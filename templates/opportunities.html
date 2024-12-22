@@ -1,0 +1,89 @@
+{% extends "sidebar.html" %}
+
+
+{% block bodycontent %}
+<script  src="{{url_for('static', filename='js/app/opportunities.js') }}"></script>
+
+<div class="container-fluid py-4">
+  <!-- Modal -->
+<div class="modal fade" id="entityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn bg-gradient-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+
+
+
+<div class="row">
+  <div class="col-6">
+    <div class="card my-4">
+      <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+        <div class="bg-gradient-danger shadow-primary border-radius-lg pt-4 pb-3">
+          <h6 class="text-white text-capitalize ps-3">Operations</h6>
+        </div>
+      </div>
+      <div class="card-body px-0 pb-2 ">
+      <div class="align-items-center mb-0">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal" data-bs-target="#entityModal">
+        Launch demo modal
+      </button>
+      </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-danger shadow-primary border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">Opportunities</h6>
+              </div>
+            </div>
+            <div class="card-body px-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Posted By</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                      <th class="text-secondary opacity-7"></th> 
+                    </tr>
+                  </thead>
+                  <tbody id="tableBody">
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+</div>
+</main>
+{% endblock %}
