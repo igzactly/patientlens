@@ -1,0 +1,94 @@
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> {% block title %}{% endblock %}</title>
+	
+	 <base href="../" > 
+<!-- Angular  JS -->
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js" integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular-csp.css" integrity="sha512-f7WVHp6iaZ7iOx9duYm67KLwCFJ9KirfMIK0MAOxf1wq5M8Ogdw5ljbCxlk/BtWIbyXWMsIaDaqwUpXttPQ/5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	 <!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="{{url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{url_for('static', filename='css/core.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{url_for('static', filename='css/icons/icomoon/styles.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{url_for('static', filename='css/components.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{url_for('static', filename='css/colors.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{url_for('static', filename='css/extras/switchery.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{url_for('static', filename='css/custom/jquery.growl.css') }}" rel="stylesheet" type="text/css">
+	<!-- /global stylesheets -->
+
+	<!-- Core JS files -->
+	
+
+	<script  src="{{url_for('static', filename='js/core/libraries/jquery.min.js') }}"></script>
+	<script src="{{url_for('static', filename='js/plugins/loaders/pace.min.js') }}"></script>
+	<script src="{{url_for('static', filename='js/core/libraries/bootstrap.min.js')}}"></script>
+	
+	<script src="{{url_for('static', filename='js/plugins/loaders/blockui.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/notifications/sweet_alert.min.js')}}"></script>
+
+
+	<!-- /core JS files -->
+
+	<!-- Theme JS files -->
+	<script src="{{url_for('static', filename='js/plugins/forms/styling/uniform.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/plugins/forms/inputs/maxlength.min.js') }}"></script>
+	<script src="{{url_for('static', filename='js/core/app.js') }}"></script>
+	<script src="{{url_for('static', filename='js/plugins/forms/styling/switchery.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/plugins/forms/styling/switch.min.js') }}"></script>
+	<script src="{{url_for('static', filename='js/plugins/notifications/pnotify.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/plugins/forms/selects/select2.min.js') }}"></script>
+
+
+
+
+
+
+	<!-- /theme JS files -->
+	<!-- Custom Scripts -->
+	<script  type="text/javascript" src="{{url_for('static', filename='js/custom/webcam.min.js') }}"></script>
+	<script  type="text/javascript" src="{{url_for('static', filename='js/custom/ajax.js') }}"></script>
+	<script  type="text/javascript" src="{{url_for('static', filename='js/custom/global.js')}}"></script>
+	<script  type="text/javascript" src="{{url_for('static', filename='js/custom/list.js') }}"></script>
+	<script  type="text/javascript" src="{{url_for('static', filename='js/custom/jquery.growl.js') }}"></script>
+	{% block appjs %}{% endblock %}
+	
+
+	
+</head>
+    
+<body class="{% block bodyclass %}{% endblock %}" ng-app="myApp" ng-controller="{% block angularcontrollerblock %}{% endblock %}"></body>
+
+
+
+			<!-- Main content -->
+
+
+				<!-- Content area -->
+			
+    {% block sidebar %}{% endblock %}
+    {% block content %}{% endblock %}
+				<!-- Footer -->
+				
+				<div class="footer text-muted text-center">
+					&copy; 2024. <a href="#">Patient Lens </a> by <a href="" target="_blank">Ignatius Gonsalves</a>
+				</div>
+				<!-- /footer -->
+
+			</div>
+			<!-- /content area -->
+
+		</div>
+		<!-- /main content -->
+
+	</div>
+	<!-- /page content -->
+
+</div>
+<!-- /page container -->
+{% block scriptblock %}{% endblock %}
+</body>
+</html>
