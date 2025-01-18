@@ -72,7 +72,7 @@ def addPrivilegeGroup(name,privilegeBits):
 
 def getAllPrivilegeGroups():
     try:
-        query="select id,name from privilege_group;"
+        query="select priv_id,priv_name from privilege_group;"
         cur.execute(query)
         output = cur.fetchall()
         return output

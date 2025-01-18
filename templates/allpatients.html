@@ -1,0 +1,167 @@
+{% extends "includes/layout.html" %}
+{% block appjs %}
+
+<script type="text/javascript" src="{{url_for('static', filename='js/app/patient.js') }}"></script>
+{% endblock %}
+{% block angularcontrollerblock %}PatientController{% endblock %}
+{% block content %}
+<!-- Advanced login -->
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-flat">
+            <div id="entityPanel" class="panel-body">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group has-feedback has-feedback-left">
+                                <input type="text" class="search form-control input-lg"
+                                    placeholder="Search Patient by Phone  / Name "> <span class="bg-danger">Coming
+                                    Soon</span>
+                                <div class="form-control-feedback">
+                                    <i class="icon-search4" style="margin-top: 10px;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-bordered table-hover table-condensed table-striped">
+                                <thead class="bg-tomato">
+                                    <tr>
+                                        <th style="width:100px;"></th>
+                                        <th>Name</th>
+                                        <th>Phone </th>
+                                        <th>Blood Group </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableBody" class="list">
+                                    <tr ng-repeat="patient in patients">
+                                        <td><input id="cb{a patient[0] a}" type="radio" name="selectRow"
+                                                value="{a patient[0] a}" style="height:20px;width:20px"
+                                                ng-click="selectPatient(patient[0])" /></td>
+                                        <td>{a patient[1] a}</td>
+                                        <td>{a patient[2] a}</td>
+                                        <td> <span ng-if="patient[3] == 1">A</span><span
+                                                ng-if="patient[3] == 2">B</span><span
+                                                ng-if="patient[3] == 3">AB</span><span
+                                                ng-if="patient[3] == 4">O</span>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal!-->
+<div id="entity_modal" class="modal fade" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-maroon">
+                <button type="button" class="close" onclick="closeEntityModal()">&times;</button>
+                <h5 id="formTitle" class="modal-title"><span ng-if="action == 1">Add </span> <span
+                        ng-if="action == 2">Update </span> Patient </h5>
+            </div>
+            <form id="entityForm" action="#" class="form-horizontal">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"> Name <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <input id="nameTb" type="text" placeholder="Patient Name" maxlength="12"
+                                class="form-control maxlength" ng-model="patientName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"> Email <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <input id="emailTb" type="text" placeholder="Patient Email" maxlength="30"
+                                class="form-control maxlength" ng-model="patientEmail">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"> Phone <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <input id="phoneTb" type="text" placeholder="Patient Phone" maxlength="12"
+                                class="form-control maxlength" ng-model="patientPhone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"> Emergency Contact <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <input id="phoneTb" type="text" placeholder="Patient Emergency Contact" maxlength="12"
+                                class="form-control maxlength" ng-model="patientEmergencyNumber">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"> Gender <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <select class="form-comtrol form-select form-select-lg mb-3" id="genderTb"
+                                ng-model="patientGender">
+                                <option ng-value="0"> Male</option>
+                                <option ng-value="1"> Female</option>
+                                <option ng-value="2"> Other</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">Blood Group <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <select class="form-comtrol form-select form-select-lg mb-3" id="bloodGroupTb"
+                                ng-model="patientBloodGroup">
+                                <option ng-repeat="bloodGroup in bloodGroups"
+                                    ng-value="bloodGroup.id"> {a bloodGroup.name a} </option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"> Age <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <input id="ageTb" type="text" placeholder="Patient Age" maxlength="3"
+                            class="form-control maxlength" ng-model="patientAge">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"> Medical History <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <textarea id="medicalHistoryTb" type="text" placeholder="Patient Medical History" maxlength="30"
+                            class="form-control maxlength" ng-model="patientMedicalHistory"> </textarea>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="idTb" value="0" />
+                    <button type="reset" class="btn btn-default">Reset Form</button>
+                    <button type="button" id="formButton" name="" ng-click="submitForm()" class="btn btn-primary">Submit
+                        form</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block title %}
+Patients
+{% endblock %}
+
+{% block bodyclass %}
+pace-done
+{% endblock %}
+
+{% block sidebar %}
+{% include "includes/navbar.html" %}
+{% include "includes/sidebar.html" %}
+{% endblock %}

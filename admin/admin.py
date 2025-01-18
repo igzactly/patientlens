@@ -78,7 +78,7 @@ def permanentlyDeleteAdmin():
 
 @admin.route("/getAllPrivilegeGroups",methods=['POST'])
 def getAllPrivilegeGroups():
-    response={"data":admin_model.getAllPrivilegeGroups(),"message":"Admin fecthed successfully !"}
+    response={"data":admin_model.getAllPrivilegeGroups(),"message":"Access Groups fecthed successfully !"}
     return json.dumps(response)
 
 @admin.route("/getAllActivePrivilegeGroups",methods=['GET'])

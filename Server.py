@@ -2,10 +2,9 @@ from flask import Flask,render_template,request,json
 from flaskext.mysql import MySQL
 import admin.admin_model as admin_model
 from admin.admin import admin
-from location.location import location
-from flats.flats import flats
-from residents.residents import residents
-from visitor_management.visitor_management import visitor_management
+from patient.patient import patient
+
+
 import base64
 STATIC_FOLDER = 'templates/includes/assets'
 
@@ -13,10 +12,7 @@ STATIC_FOLDER = 'templates/includes/assets'
 
 app = Flask(__name__,static_folder=STATIC_FOLDER)
 app.register_blueprint(admin)
-app.register_blueprint(location)
-app.register_blueprint(residents)
-app.register_blueprint(flats)
-app.register_blueprint(visitor_management)
+app.register_blueprint(patient)
 mysql = MySQL()
 mysql.init_app(app)
 #MSQL configurations
