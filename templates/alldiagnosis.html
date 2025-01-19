@@ -1,0 +1,218 @@
+{% extends "includes/layout.html" %}
+{% block appjs %}
+
+<script type="text/javascript" src="{{url_for('static', filename='js/app/diagnosis.js') }}"></script>
+{% endblock %}
+{% block angularcontrollerblock %}DiagnosisController{% endblock %}
+{% block content %}
+<!-- Advanced login -->
+<style>
+    .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .gallery img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-flat">
+            <div id="entityPanel" class="panel-body">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group has-feedback has-feedback-left">
+                                <input type="text" class="search form-control input-lg"
+                                    placeholder="Search Diagnosis by Phone  / Name "> <span class="bg-danger">Coming
+                                    Soon</span>
+                                <div class="form-control-feedback">
+                                    <i class="icon-search4" style="margin-top: 10px;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-bordered table-hover table-condensed table-striped">
+                                <thead class="bg-tomato">
+                                    <tr>
+                                        <th style="width:100px;"></th>
+                                        <th>Patient</th>
+                                        <th>Staff </th>
+                                        <th>Initial Symptoms </th>
+                                        <th>Prescribed Medicines </th>
+                                        <th>Diagnosis Date </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableBody" class="list">
+                                    <tr ng-repeat="diagnosis in diagnoses">
+                                        <td><input id="cb{a diagnosis[0] a}" type="radio" name="selectRow"
+                                                value="{a diagnosis[0] a}" style="height:20px;width:20px"
+                                                ng-click="selectDiagnosis(diagnosis[0])" /></td>
+                                        <td>{a diagnosis[2] a}</td>
+                                        <td>{a diagnosis[3] a}</td>
+                                        <td>{a diagnosis[4] a}</td>
+                                        <td>{a diagnosis[5] a}</td>
+                                        <td>{a diagnosis[6] a}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal!-->
+<div id="entity_modal" class="modal fade" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-maroon">
+                <button type="button" class="close" onclick="closeEntityModal()">&times;</button>
+                <h5 id="formTitle" class="modal-title"><span ng-if="action == 0">Add </span> <span
+                        ng-if="action == 2">Update </span> Diagnosis </h5>
+            </div>
+            <form id="entityForm" action="#" class="form-horizontal">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"> Patient <span class="text-danger">*</span></label>
+                        <select class="form-comtrol form-select form-select-lg mb-3" id="patientTb"
+                                ng-model="patientId">
+                                <option ng-repeat="patient in patients"
+                                    ng-value="{a patient[0] a}"> {a patient[1] a} </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"> Doctor <span class="text-danger">*</span></label>
+                        <select class="form-comtrol form-select form-select-lg mb-3" id="patientTb"
+                                ng-model="adminId">
+                                <option ng-repeat="doctor in doctors"
+                                    ng-value="{a doctor[0] a}"> {a doctor[1] a} </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"> Initial Symptoms <span class="text-danger">*</span></label>
+                        <textarea id="initialSymptomsTb" type="text" placeholder="Enter the initial symptoms " maxlength="20" class="form-control maxlength" ng-model="initialSymptoms" > </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"> Report  <span class="text-danger">*</span></label>
+                        <textarea id="doctorReport" type="text" placeholder="Enter the diagnosis report" maxlength="20" class="form-control maxlength" ng-model="doctorReport" > </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"> Prescribed Medicines  <span class="text-danger">*</span></label>
+                        <textarea id="prescribedMedicines" type="text" placeholder="Enter the diagnosis report" maxlength="20" class="form-control maxlength" ng-model="prescribedMedicines" > </textarea>
+                    </div>
+                  
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"> Select Images <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <input 
+                            type="file" 
+                            id="images" 
+                            multiple 
+                            file-model="imageFiles"
+                            >  
+                    </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="idTb" value="0" />
+                    <button type="reset" class="btn btn-default">Reset Form</button>
+                    <button type="button" id="formButton" name="" ng-click="submitForm()" class="btn btn-primary">Submit
+                        form</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="info_modal" class="modal fade" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-maroon">
+                <button type="button" class="close" ng-click="closeForm()">&times;</button>
+                <h5 id="formTitle" class="modal-title"> Diagnostic Informaion for <span> {a patientName a}</span> </h5>
+            </div>
+            <form id="entityForm" action="#" class="form-horizontal">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <h3 class="control-label col-sm-3"> Patient Name <span class="text-danger">*</span></h3>
+                        <div class="col-sm-9">
+                            <h3> {a patientName a}</h3>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"> Report Images<span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <div class="gallery" ng-repeat="image in images" >
+                                
+                                 <img   ng-src="{a image.src a}" /> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"> Addressed By <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <h3> {a adminName a}</h3>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"> Initial Symptoms <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <h3> {a initialSymptoms a}</h3>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"> Prescribed Medicines <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <h3> {a prescribedMedicines a}</h3>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"> Initial Diagnosis Date <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <h3> {a diagnosisDate a}</h3>
+
+                        </div>
+                    </div>
+                
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="idTb" value="0" />
+                    
+                    <button type="button" id="formButton" name="" ng-click="closeForm()" class="btn btn-primary">
+                        Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block title %}
+Diagnosis
+{% endblock %}
+
+{% block bodyclass %}
+pace-done
+{% endblock %}
+
+{% block sidebar %}
+{% include "includes/navbar.html" %}
+{% include "includes/sidebar.html" %}
+{% endblock %}

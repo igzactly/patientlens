@@ -28,6 +28,16 @@ def doLogin(loginType,name,password):
     except Exception as e:
         print(e.args)
         return False
+    
+def getAllDoctors():
+    try:
+        query="select a.id, a.name from admin a where a.privilege_id = 1 "
+        cur.execute(query)
+        output = cur.fetchall()
+        return output
+    except Exception as error:
+        return str(error)
+        
 def getAllAdmin():
     try:
         query="select a.id, a.name, pg.priv_name from admin a inner join privilege_group pg on a.privilege_id = pg.priv_id"

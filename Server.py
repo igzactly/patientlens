@@ -3,8 +3,8 @@ from flaskext.mysql import MySQL
 import admin.admin_model as admin_model
 from admin.admin import admin
 from patient.patient import patient
-
-
+from diagnosis.diagnosis import diagnosis
+import os
 import base64
 STATIC_FOLDER = 'templates/includes/assets'
 
@@ -13,13 +13,9 @@ STATIC_FOLDER = 'templates/includes/assets'
 app = Flask(__name__,static_folder=STATIC_FOLDER)
 app.register_blueprint(admin)
 app.register_blueprint(patient)
-mysql = MySQL()
-mysql.init_app(app)
-#MSQL configurations
-app.config['MYSQL_DATABASE_USER']='root'
-app.config['MYSQL_DATABASE_PASSWORD']=''
-app.config['MYSQL_DATABASE_DB']='v_m_s_v_1_0_0'
-app.config['MYSQL_DATABASE_HOST']='localhost'
+app.register_blueprint(diagnosis)
+
+
 
 
 @app.route('/')

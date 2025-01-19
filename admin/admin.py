@@ -31,7 +31,15 @@ def addAdmin():
 
 
 
-
+@admin.route("/getDoctors",methods=['GET'])
+def getAllDoctors():
+    try:
+        response=admin_model.getAllDoctors()
+        return json.dumps(response)
+    except Exception as error:
+        response = {"message":error}
+        return json.dumps(response) 
+        
 
 @admin.route("/updateAdmin",methods=["POST"])
 def updateAdmin():

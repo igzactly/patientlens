@@ -44,10 +44,10 @@
                         </ul>
                     </li>
                     <li >
-                        <a href="#" class="has-ul" id="societyLink"><i class="icon-copy"></i> <span>Case Management</span></a>
+                        <a href="#" class="has-ul" id="diagnosisManagementLink"><i class="icon-copy"></i> <span>Diagnosis Management</span></a>
                         <ul class="hidden-ul">
                             
-                            <li id="casesLink"><a href="case/allcases" ><i class="icon-pin"></i><i class='fas fa-broadcast-tower' style='font: size 12px;color:red'></i>Cases</a></li>
+                            <li id="diagnosisLink"><a href="diagnosis/" ><i class="icon-pin"></i><i class='fas fa-broadcast-tower' style='font: size 12px;color:red'></i>All Diagnosis</a></li>
                             <li id="reportsLink"><a href="reports/allreports" ><i class="icon-pin"></i>Reports</a></li>
                             <li id="paymentsLink"><a href="payments/allpayments" ><i class="icon-pin"></i>Payments</a></li>
                         </ul>
@@ -63,7 +63,7 @@
 
 <div class="page-header page-header-default">
     <div class="page-header-content  bg-teal-200" style="
-background:#AAA9BC;">
+background:#09122C;">
         <div class="page-title bg-teal-200" >
             <div class="row">
             <div class="col-sm-4">
@@ -73,7 +73,10 @@ background:#AAA9BC;">
 
             <div class="col-sm-8" id="btns">
                 
-                <button type="button" class="btn bg-maroon btn-labeled btn-xs" ng-click="loadModal(1)"><b><i class=" icon-plus-circle2"></i></b>Add </button>
+                <button type="button" class="btn bg-maroon btn-labeled btn-xs" ng-click="loadModal(0)"><b><i class=" icon-plus-circle2"></i></b>Add </button>
+                {% if getEnabled %}
+                <button type="button" class="btn bg-maroon btn-labeled btn-xs" ng-click="getInformation()"><b><i class=" icon-plus-circle2"></i></b>Get Info </button>
+                {% endif %}
                 <button type="button" class="btn bg-maroon btn-labeled btn-xs" ng-click="getDetails()"><b><i class="icon-pencil"></i></b>Update</button>
                 <!-- <button type="button" class="btn bg-maroon btn-labeled btn-xs" onclick="loadModal('Update');"><b><i class="icon-pencil"></i></b>Update</button> -->
                 <button type="button" class="btn bg-maroon btn-labeled btn-xs"><b><i class="icon-stop"></i></b>Disable</button>
@@ -86,11 +89,3 @@ background:#AAA9BC;">
             </div>
             </div>	
         </div>
-        <script>
-
-            if(window.location.href.search("allvisits")>0){
-                $("#btns"). css("display", "none");
-                
-
-            }
-          </script>
