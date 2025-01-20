@@ -4,6 +4,7 @@ import admin.admin_model as admin_model
 from admin.admin import admin
 from patient.patient import patient
 from diagnosis.diagnosis import diagnosis
+from payment.payment import payment
 import os
 import base64
 STATIC_FOLDER = 'templates/includes/assets'
@@ -14,7 +15,7 @@ app = Flask(__name__,static_folder=STATIC_FOLDER)
 app.register_blueprint(admin)
 app.register_blueprint(patient)
 app.register_blueprint(diagnosis)
-
+app.register_blueprint(payment)
 
 
 

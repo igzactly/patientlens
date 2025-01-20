@@ -3591,7 +3591,7 @@ li + .dropdown-header.highlight,
   .navbar-default .dropdown-menu[class*=bg-] .label,
   .navbar-default .dropdown-menu[class*=bg-] .badge {
     color: #fff;
-    background-color: #2196F3;
+    background-color: #333333;
     border-color: transparent;
   }
   .navbar-default .dropdown-menu[class*=bg-] > .divider {
@@ -3820,7 +3820,7 @@ ul.dropdown-menu .dropdown-content-heading:first-child {
 .dropdown-content-footer {
   background-color: #fcfcfc;
   color: #333333;
-  border-top: 1px solid #ddd;
+  border-top: 1px sol d #ddd;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
 }

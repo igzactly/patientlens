@@ -15,7 +15,7 @@ def alldiagnosiss():
 @diagnosis.route("/adddiagnosis",methods=["POST"])
 def adddiagnosis():
     userData=request.json
-    response={"data":diagnosis_model.add(userData["patient_id"],userData["admin_id"],userData["report"],userData["initial_symptoms"],userData["prescribed_medicines"]),"message":"diagnosis Added successfully !"}
+    response={"data":diagnosis_model.add(userData["patient_id"],userData["admin_id"],userData["report"],userData["initial_symptoms"],userData["prescribed_medicines"]),"last_diagnosis":getlastdiagnosis(),"message":"diagnosis Added successfully !"}
     return json.dumps(response)
 
 
@@ -37,8 +37,18 @@ def getAllDiagnosis():
         return json.dumps(response)
     except Exception as error:
         response = {"message":error}
+        print(response)
         return json.dumps(response, default=str) 
-        
+
+
+def getlastdiagnosis():
+    try:
+        response=diagnosis_model.getlastdiagnosis()
+        return json.dumps(response)
+    except Exception as error:
+        response = {"message":error}
+        return json.dumps(response, default=str) 
+
 # @diagnosis.route('/getimages/<int:patient_id>/<int:diagnosis_id>/<string:filename>', methods=['GET'])
 # def get_images(patient_id, diagnosis_id):
 #     folder_path = os.path.join(BASE_DIR, str(patient_id), str(diagnosis_id))
@@ -120,13 +130,5 @@ def upload_images():
     }), 200
 
 
-# @diagnosis.route('/images/<int:patient_id>/<int:diagnosis_id>', methods=['GET'])
-# def get_images(patient_id, diagnosis_id):
-#     folder_path = os.path.join(UPLOAD_FOLDER, str(patient_id), str(diagnosis_id))
-#     if not os.path.exists(folder_path):
-#         return jsonify({'error': 'No images found'}), 404
 
-#     # Get list of image filenames in the folder
-#     images = os.listdir(folder_path)
-#     image_urls = [f'/images/{patient_id}/{diagnosis_id}/{img}' for img in images]
-#     return jsonify({'images': image_urls})
+

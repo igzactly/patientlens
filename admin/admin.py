@@ -131,3 +131,15 @@ def getPrivilegeGroupDetails():
     except Exception as e:
         print(e.message, e.args)
         return False
+
+
+
+@admin.route("/doLogin",methods=['POST'])
+def doLogin():
+    try:
+        userData=request.json
+        response={"data":admin_model.doLogin(userData["userId"],userData["userPass"]),"message":"Details Fetched Successfully !"}
+        return json.dumps(response)
+    except Exception as e:
+        print(e.message, e.args)
+        return False

@@ -131,7 +131,7 @@
 
 }
 .bg-bg1{
-  background-image: url(../../assets/images/backgrounds/bg1.jpg);
+  background-color:#09122C;
   background-repeat: no-repeat;
   /* Full height */
   height: 100%; 
@@ -157,7 +157,7 @@
   min-height: 100%;
 }
 .bg-tomato{
-  background-color:	#b077ba;
+  background-color:	teal;
   border-color:white;
   color: #fff;
 }

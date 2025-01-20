@@ -12,7 +12,7 @@ def get(id):
         
 
 
-def doLogin(loginType,name,password):
+def doLogin(name,password):
     try:
         # password = hashlib.md5(bytes(password),encoding='utf-8')
         result = bytes(password,'utf-8')

@@ -14,7 +14,14 @@ def get(id):
         print(str(error))
         return str(error)
         
-
+def getlastdiagnosis():
+    try:
+        query= "select max(id) from diagnoses"
+        cur.execute(query.format(id))
+        output = cur.fetchone()
+        return output
+    except Exception as error:
+        return str(error)
 
 def getAllDiagnosis():
     try:

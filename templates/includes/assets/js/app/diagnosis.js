@@ -39,6 +39,8 @@ app.controller('DiagnosisController', ['$scope', '$http','fileUploadService', fu
     $scope.initialSymptoms = "";
     $scope.doctorReport = "";
     $scope.prescribedMedicines = "";
+    $scope.paymentAmount="";
+    $scope.modeofpayment=1;
     postdata = "";
     
 
@@ -116,7 +118,7 @@ app.controller('DiagnosisController', ['$scope', '$http','fileUploadService', fu
         newObj.admin_id = $scope.adminId;
         newObj.report = $scope.doctorReport;
         newObj.initial_symptoms = $scope.initialSymptoms;
-        newObj.prescribed_medicines = $scope.prescribedMedicines
+        newObj.prescribed_medicines = $scope.prescribedMedicines;
         postdata = JSON.stringify(newObj);
         switch ($scope.action) {
             case 0:
@@ -130,7 +132,11 @@ app.controller('DiagnosisController', ['$scope', '$http','fileUploadService', fu
                     headers: { 'Content-Type': 'application/json' }
                 }).then(function successCallback(response) {
                     showSuccessMessage("patient " + $scope.patientName + " Details Added Sucessfully ! ");
+                    console.log(response);
+                    $scope.newDiagnosticId =  response.data.last_diagnosis.substring(1, response.data.last_diagnosis.length-1);
+                    console.log($scope.newDiagnosticId);
                     $("#entity_modal").modal('hide');
+                    $("#payment_modal").modal('show');
 
 
                 }, function errorCallback(response) {
@@ -176,7 +182,6 @@ app.controller('DiagnosisController', ['$scope', '$http','fileUploadService', fu
         });
     };
     $scope.uploadImages = function () {
-        console.log("called");
         var files = $scope.imageFiles;
         console.log($scope.imageFiles);
         var patientId = $scope.patientId;
@@ -237,6 +242,31 @@ app.controller('DiagnosisController', ['$scope', '$http','fileUploadService', fu
     }
 
         
+    }
+    $scope.addPayment= function(){
+        var newObj = new Object();
+        newObj.diagnosis_id = $scope.newDiagnosticId;
+        newObj.payment_amount = $scope.paymentAmount;
+        newObj.modeofpayment = $scope.modeofpayment;
+        postdata = JSON.stringify(newObj);
+        var post = $http({
+            method: "POST",
+            url: "payment/addpayment",
+            dataType: 'json',
+            data: postdata,
+            headers: { 'Content-Type': 'application/json' }
+        }).then(function successCallback(response) {
+            showSuccessMessage("Payment info created ! ");
+            console.log($scope.last_diagnosis);
+            $("#payment_modal").modal('hide');
+
+
+        }, function errorCallback(response) {
+
+
+        });
+        
+
     }
 //getting forms default values 
 $scope.getAllPatients();
