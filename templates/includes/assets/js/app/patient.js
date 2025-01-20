@@ -21,7 +21,7 @@ app.controller('PatientController', ['$scope', '$http', function ($scope, $http)
         $scope.patients = response.data;
     });
     $scope.loadModal = function (action) {
-        $scope.action = action;
+        $scope.action = 1;
         $("#entity_modal").modal('show');
 
 
@@ -93,7 +93,7 @@ app.controller('PatientController', ['$scope', '$http', function ($scope, $http)
                 // Add Code Here
                 var post = $http({
                     method: "POST",
-                    url: "patient/addpatient",
+                    url: "patients/addpatient",
                     dataType: 'json',
                     data: postdata,
                     headers: { 'Content-Type': 'application/json' }

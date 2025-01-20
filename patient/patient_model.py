@@ -20,11 +20,11 @@ def getAllPatients():
         return output
     except Exception as error:
         return str(error)
-def add(name,phone,email,privilege_id):
+def add(name,email,phone,gender,bloodgroup,medicalhistory,emergencynumber,age):
     try:
         defaultPass="abcd1234"
-        query="insert into patient(name,phone,email,password,privilege_id) values('{}','{}','{}',(SELECT MD5('{}')),'{}')"
-        cur.execute(query.format(name,phone,email,defaultPass,privilege_id))
+        query="insert into patients(patient_name,patient_email,patient_phone,patient_gender,patient_blood_group,patient_medical_history,patient_emergency_number,patient_age) values('{}','{}','{}','{}','{}','{}','{}','{}')"
+        cur.execute(query.format(name,email,phone,gender,bloodgroup,medicalhistory,emergencynumber,age))
         return True
     except Exception as e:
         print(e.args)

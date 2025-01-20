@@ -25,7 +25,8 @@ app.controller('AdminController', ['$scope','$http', function($scope,$http) {
                  });
 
             $scope.loadModal= function(action){
-                $scope.action = action;
+                $scope.action = 1;
+                
                 $("#entity_modal").modal('show');
                 
 

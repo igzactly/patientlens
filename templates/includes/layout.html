@@ -59,11 +59,12 @@
 
 	
 </head>
-    
+{% if privilegegroups == '1' %}
+<body class=" pace-done test">
+
+{% else %}
 <body class="{% block bodyclass %}{% endblock %}" ng-app="myApp" ng-controller="{% block angularcontrollerblock %}{% endblock %}"></body>
-
-
-
+{% endif  %}
 			<!-- Main content -->
 
 

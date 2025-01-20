@@ -23,7 +23,7 @@ def privilegegroups():
 @patient.route("/addpatient",methods=["POST"])
 def addPatient():
     userData=request.json
-    response={"data":patient_model.add(userData["name"],userData["phone"],userData["email"],userData["priv"]),"message":"patient Added successfully !"}
+    response={"data":patient_model.add(userData["name"],userData["email"],userData["phone"],userData["gender"],userData["bloodGroup"],userData["medicalHistory"],userData["emergencyNumber"],userData["age"]),"message":"patient Added successfully !"}
     return json.dumps(response)
 
 

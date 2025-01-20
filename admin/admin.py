@@ -18,7 +18,7 @@ def appconfig():
 
 @admin.route("/privilegegroups")
 def privilegegroups():
-    return render_template("privilegegroups.html")
+    return render_template("privilegegroups.html",privilegegroups='1')
 
 
 #operations
